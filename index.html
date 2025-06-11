@@ -1,45 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lohith's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://lohith8891.github.io/Portfolio/">
+    <title>My Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2e;
+            color: #f4f4f4;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3 {
+            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            padding: 15px 25px;
+            margin: 10px 0;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin: 20px 0 15px;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            margin: 15px 0 10px;
+        }
+        
+        @keyframes headingGlow {
+            from {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+                            0 0 10px rgba(110, 72, 170, 0.5);
+            }
+            to {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+                            0 0 20px rgba(157, 80, 187, 0.7);
+            }
+        }
+        
+        header {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(110, 72, 170, 0.6),
+                        0 0 0 10px rgba(157, 80, 187, 0.2),
+                        inset 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(110, 72, 170, 0.8),
+                        0 0 0 10px rgba(157, 80, 187, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        
+        .types {
+            color: #f4f4f4;
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+        section:nth-child(4) { animation-delay: 0.8s; }
+        
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .project {
+            width: 48%;
+            background: linear-gradient(145deg, #fbcdcd 0%, #ffb7b7 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .education {
+            width: 100%;
+            background: linear-gradient(145deg, #d1e3ff 0%, #a8c6ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .education:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: white;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 10px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+        }
+        
+        .middle {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        a {
+            color: #9d50bb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #6e48aa;
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(110, 72, 170, 0.6);
+            }
+            to {
+                transform: scale(1.03);
+                box-shadow: 0 15px 40px rgba(110, 72, 170, 0.8);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            .project, .education {
+                width: 100%;
+            }
+            .middle {
+                display: flex;
+                flex-direction: column;
+            }
+            .btn {
+                margin: 10px auto;
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Portfolio</h1>
+    </header>
     <div class="container">
-        <ul class="navbar">
-            <li><a href="#About">ABOUT</a></li>
-            <li><a href="https://raw.githubusercontent.com/Lohith8891/Portfolio/refs/heads/main/Skills.webp" target="_blank">SKILLS</a></li>
-            <li><a href="https://raw.githubusercontent.com/Lohith8891/Portfolio/refs/heads/main/Contact.webp" target="_blank">CONTACT</a></li>
-            <li><a href="https://raw.githubusercontent.com/Lohith8891/Portfolio/refs/heads/main/resume%20(1).webp" target="_blank">RESUME</a></li>
-            <li><a href="https://github.com/Lohith8891/Portfoliowebsite/tree/main" target="_blank">UID</a></li>
-        </ul>
-        <div class="leftside">
-            <div class="icons">
-                <a href="https://x.com/Lohith8891" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/lohithyadlapalli/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/Lohith8891" target="_blank"><i class="fa-brands fa-github"></i></a>
-            </div>
-            <div class="content">
-                <p class="intro" id="About">Hi! I am <span>Lohith Yadlapalli</span></p>
-                <h1>Web Developer</h1>
-                <p>I am a first year CSE student passionate about web. <br>
-                     I am using HTML and CSS to style this website. <br>
-                Aim is to become a Full-Stack-Developer</p>
-                <div class="btn">
-                    <button>Hire Me</button>
+        <img src="https://raw.githubusercontent.com/Lohith8891/Portfolio/refs/heads/main/profilepic.webp" alt="My Profile Picture" class="profile-img">
+        
+        <div class="types"><p> Python | Java | HTML | CSS </p></div> 
+    
+        <section> 
+            <h2>About Me</h2>
+            <p>Hello! Myself Lohith Yadlapalli
+                <br>
+                I'm a web developer, passionate about creating beautiful and functional websites. I specialize in front-end and back-end development, ensuring seamless user experiences.</p>
+        </section>
+        
+        <div class="middle">
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="#education" class="btn">Educational Details</a>
+            <a href="#contact" class="btn">Contact Details</a>
+        </div>
+        
+        <section>
+            <h2>Projects</h2>
+            <div class="projects" id="projects">
+                <div class="project">
+                    <h3>Project 1</h3>
+                    <p>A portfolio website showcasing my skills and past work.</p>
+                </div>
+                <div class="project">
+                    <h3>Project 2</h3>
+                    <p>A personal blog where I share insights on web development and technology.</p>
+                </div>
+                <div class="project">
+                    <h3>Project 3</h3>
+                    <p>A website for a local business, helping them reach more customers online.</p>
                 </div>
             </div>
-        </div>
-        <div class="rightside">
-            <div class="design">
-                <div class="circle"></div>
-                <div class="circle"></div>
+        </section>
+        
+        <section>
+            <h2 id="education">Education</h2>
+            <div class="education">
+                <h3>1-10</h3>
+                <p>HOCL Pillia School</p>
             </div>
-        </div>
+            <div class="education">
+                <h3>11-12</h3>
+                <p>Andhra Board:- 2022-2024 (MPC)</p>
+                <p>Akash Institute</p>
+            </div>
+            <div class="education">
+                <h3>Engineering</h3>
+                <P>Computer Science and Engineering:- 2024-2028</P>
+                <p>Amrita Vishwa Vidhyapeetam, Kerala</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2 id="contact">Contact</h2>
+            <p>Email: <a href="mailto:lohithy2019@gmail.com">lohithy2019@gmail.com</a></p>
+            <p>Phn No: 7219457798</p>
+            <p><a href="https://www.linkedin.com/in/lohithyadlapalli/">LinkedIn</a> </p>
+            <p><a href="https://github.com/Lohith8891" target="_blank">GitHub</a></p>
+        </section>
     </div>
+    
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
 </body>
-</html>
